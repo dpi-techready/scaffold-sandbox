@@ -17,6 +17,7 @@ FileUtils.chdir APP_ROOT do
   if !Dir.exist?("vendor/bundle/ruby") && Dir.exist?("/base-rails/gems/ruby")
   	FileUtils.cp_r("/base-rails/gems/ruby", "vendor/bundle")
   	system! "bundle config set --local path 'vendor/bundle'"
+    system! 'bundle exec skylight disable_dev_warning'
   end
   # system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')

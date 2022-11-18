@@ -1,7 +1,8 @@
 image: jelaniwoods/appdev2022-scaffold-sandbox-tmp
 
 tasks:
-  - init: bin/setup
+  - before: |
+      bin/setup
 ports:
   - port: 3000
     onOpen: open-preview
