@@ -11,6 +11,24 @@
   </head>
 
   <body>
+
+      <!-- conditional for user sessions/rendering links -->
+      <% if @current_user != nil %>
+
+      <%= link_to "Your Tasks", tasks_path %>
+      |
+      <%= link_to "Edit profile", edit_user_registration_path %>
+      |
+      <%= link_to "Sign out", destroy_user_session_path %>
+    
+      <% else %>
+
+      <%= link_to "Sign in", user_session_path %>
+      |
+      <%= link_to "Sign up", new_user_registration_path %>
+
+      <% end %>
+
     <%= yield %>
   </body>
 </html>
