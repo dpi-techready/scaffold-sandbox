@@ -13,6 +13,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     # @task = Task.new
+    # added current user to fix "user must exist" error
     @task = current_user.tasks.build
   end
 
@@ -23,6 +24,7 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     # @task = Task.new(task_params)
+    # added current user to fix "user must exist" error
     @task = current_user.tasks.build(task_params)
 
     respond_to do |format|
