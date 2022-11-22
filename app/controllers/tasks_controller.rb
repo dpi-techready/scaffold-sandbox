@@ -3,7 +3,12 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    # @tasks = Task.all
+    if current_user == nil
+      @tasks = Task.all
+    else 
+      @tasks = current_user.tasks.all
+    end  
   end
 
   # GET /tasks/1 or /tasks/1.json
