@@ -12,7 +12,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    # @task = Task.new
+    @task = current_user.tasks.build
   end
 
   # GET /tasks/1/edit
@@ -21,7 +22,8 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    # @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
     respond_to do |format|
       if @task.save
@@ -34,6 +36,24 @@ class TasksController < ApplicationController
     end
   end
 
+  # def create
+  #   # require columns in strong parameters list
+  #   task_attributes = params.require(:task).permit(:title, :description)
+    
+  #   # mass assignment
+  #   @task = Task.new(task_attributes)
+
+  #   if @task.valid?
+  #     @task.save
+  #     # using helper method (use paths on the clients and urls on the server side)
+  #     redirect_to tasks_url, notice: "Task created successfully."
+
+  #   else
+  #     render "new"
+  #   end
+  # end
+
+  
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     respond_to do |format|
@@ -67,4 +87,8 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:title, :description, :complete)
     end
+
+    # def posts_params
+    #   params.require(:post).permit(:your_posts_params, :user_id)
+    # end
 end
