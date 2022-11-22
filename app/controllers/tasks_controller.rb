@@ -34,7 +34,8 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
+        # format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
+        format.html { redirect_to action: "index", notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,29 +44,13 @@ class TasksController < ApplicationController
     end
   end
 
-  # def create
-  #   # require columns in strong parameters list
-  #   task_attributes = params.require(:task).permit(:title, :description)
-    
-  #   # mass assignment
-  #   @task = Task.new(task_attributes)
-
-  #   if @task.valid?
-  #     @task.save
-  #     # using helper method (use paths on the clients and urls on the server side)
-  #     redirect_to tasks_url, notice: "Task created successfully."
-
-  #   else
-  #     render "new"
-  #   end
-  # end
-
   
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
+        # format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
+        format.html { redirect_to action: "index", notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -79,7 +64,8 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
+      # format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
+      format.html { redirect_to action: "index", notice: "Task was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -94,8 +80,4 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:title, :description, :complete)
     end
-
-    # def posts_params
-    #   params.require(:post).permit(:your_posts_params, :user_id)
-    # end
 end
